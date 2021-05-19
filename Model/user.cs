@@ -14,17 +14,6 @@ namespace FrameworkAPI.Model
             Albums = new HashSet<Album>();
         }
 
-        public User(UserDTO userDTO)
-        {
-            Name = userDTO.name;
-            Username = userDTO.username;
-            Email = userDTO.email;
-            Phone = userDTO.phone;
-            Website = userDTO.website;
-            Guid = string.IsNullOrEmpty(userDTO.guid) ? System.Guid.NewGuid().ToString() : userDTO.guid;
-            Address = new Address(userDTO.address);
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }

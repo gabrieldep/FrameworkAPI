@@ -1,4 +1,5 @@
-﻿using FrameworkAPI.DTO;
+﻿using FrameworkAPI.Controls;
+using FrameworkAPI.DTO;
 using FrameworkAPI.Model;
 using FrameworkAPI.Model.Context;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,7 @@ namespace FrameworkAPI.Controllers
             try
             {
                 IEnumerable<User> users = usersDTO
-                    .Select(user => new User(user));
+                    .Select(userDTO => UserControl.GetUser(userDTO));
 
                 foreach (User user in users)
                 {
@@ -63,7 +64,7 @@ namespace FrameworkAPI.Controllers
         {
             try
             {
-                User user = new(userDTO);
+                User user = UserControl.GetUser(userDTO);
                 
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();

@@ -8,14 +8,6 @@ namespace FrameworkAPI.Model
 {
     public class Address
     {
-        public Address(AddressDTO addressDTO)
-        {
-            Street = addressDTO.street;
-            City = addressDTO.city;
-            Suite = addressDTO.suite;
-            ZipCode = addressDTO.zipcode;
-            Geo = new Geo(addressDTO.geo);
-        }
         public int Id { get; set; }
         public string Street { get; set; }
         public string Suite { get; set; }
