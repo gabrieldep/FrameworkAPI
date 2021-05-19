@@ -11,15 +11,19 @@ namespace FrameworkAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly FrameworkAPIDbContext _context;
 
-        public UsersController(FrameworkAPIDbContext context)
+        public UserController(FrameworkAPIDbContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Adiciona uma lista de Users
+        /// </summary>
+        /// <param name="usersDTO">Lista com os users para adicionar</param>
         [HttpPost("PostUsers")]
         public async Task<IActionResult> PostUsersAsync([FromBody] IList<UserDTO> usersDTO)
         {
@@ -76,6 +80,10 @@ namespace FrameworkAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Adiciona um User
+        /// </summary>
+        /// <param name="userDTO">User para adicionar</param>
         [HttpPost("PostUser")]
         public async Task<IActionResult> PostUserAsync([FromBody] UserDTO userDTO)
         {
@@ -119,8 +127,13 @@ namespace FrameworkAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Login do Usuario
+        /// </summary>
+        /// <param name="userName">Nome do usuario</param>
+        /// <returns>guid de controle do usuario</returns>
         [HttpGet("GetGuid")]
-        public ActionResult<string> GetGuid([FromBody] string userName)
+        public ActionResult<string> GetGuid(string userName)
         {
             try
             {
