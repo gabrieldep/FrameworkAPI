@@ -40,6 +40,9 @@ namespace FrameworkAPI.Model.Context
                 .WithMany(c => c.Users)
                 .HasForeignKey(u => u.IdCompany)
                 .HasConstraintName("UserCompanyFKConstraint");
+
+                u.HasIndex(u => u.Username)
+                .IsUnique();
             });
 
             modelBuilder.Entity<Address>(a =>
