@@ -57,7 +57,7 @@ namespace FrameworkAPI.Model.Context
             {
                 p.HasOne(p => p.User)
                 .WithMany(u => u.Posts)
-                .HasForeignKey(p => p.UserId)
+                .HasForeignKey(p => p.IdUser)
                 .HasConstraintName("PostUserFKConstraint");
             });
 
@@ -65,7 +65,7 @@ namespace FrameworkAPI.Model.Context
             {
                 c.HasOne(c => c.Post)
                 .WithMany(p => p.Comments)
-                .HasForeignKey(c => c.PostId)
+                .HasForeignKey(c => c.IdPost)
                 .HasConstraintName("CommentPostFKConstraint");
             });
 
@@ -73,7 +73,7 @@ namespace FrameworkAPI.Model.Context
             {
                 a.HasOne(a => a.User)
                 .WithMany(u => u.Albums)
-                .HasForeignKey(a => a.UserId)
+                .HasForeignKey(a => a.IdUser)
                 .HasConstraintName("AlbumUserFKConstraint");
             });
 
@@ -81,7 +81,7 @@ namespace FrameworkAPI.Model.Context
             {
                 p.HasOne(p => p.Album)
                 .WithMany(a => a.Photos)
-                .HasForeignKey(p => p.AlbumId)
+                .HasForeignKey(p => p.IdAlbum)
                 .HasConstraintName("PhotoAlbumFKConstraint");
             });
         }

@@ -35,7 +35,7 @@ namespace FrameworkAPI.Controllers
                     {
                         Body = p.body,
                         Title = p.title,
-                        UserId = p.userId
+                        IdUser = p.userId
                     });
 
                 foreach (Post post in posts)
@@ -73,7 +73,7 @@ namespace FrameworkAPI.Controllers
                 {
                     Body = postDTO.body,
                     Title = postDTO.title,
-                    UserId = postDTO.userId
+                    IdUser = postDTO.userId
                 };
                 _context.Posts.Add(post);
                 await _context.SaveChangesAsync();
@@ -102,7 +102,7 @@ namespace FrameworkAPI.Controllers
                 {
                     body = post.Body,
                     title = post.Title,
-                    userId = post.UserId
+                    userId = post.IdUser
                 };
             }
             catch (ArgumentNullException)
@@ -129,7 +129,7 @@ namespace FrameworkAPI.Controllers
                 {
                     body = p.Body,
                     title = p.Title,
-                    userId = p.UserId
+                    userId = p.IdUser
                 }).ToList();
             }
             catch (ArgumentNullException)

@@ -35,7 +35,7 @@ namespace FrameworkAPI.Controllers
                     Body = commentDTO.body,
                     Email = commentDTO.email,
                     Name = commentDTO.name,
-                    PostId = commentDTO.postId                    
+                    IdPost = commentDTO.postId                    
                 };
                 _context.Comments.Add(comment);
                 await _context.SaveChangesAsync();
@@ -65,7 +65,7 @@ namespace FrameworkAPI.Controllers
                     body = comment.Body,
                     email = comment.Email,
                     name = comment.Name,
-                    postId = comment.PostId
+                    postId = comment.IdPost
                 };
             }
             catch (ArgumentNullException)
@@ -85,14 +85,14 @@ namespace FrameworkAPI.Controllers
             try
             {
                 IEnumerable<Comment> comments = _context.Comments
-                    .Where(c => c.PostId == idPost)
+                    .Where(c => c.IdPost == idPost)
                     .ToList();
                 return comments.Select(c => new CommentDTO
                 {
                     body = c.Body,
                     email = c.Email,
                     name = c.Name,
-                    postId = c.PostId
+                    postId = c.IdPost
                 }).ToList();
             }
             catch (ArgumentNullException)

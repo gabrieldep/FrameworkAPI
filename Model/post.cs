@@ -16,7 +16,7 @@ namespace FrameworkAPI.Model
         public string Title { get; set; }
         public string Body { get; set; }
 
-        public int UserId { get; set; }
+        public int IdUser { get; set; }
         public User User { get; set; }
 
         public ICollection<Comment> Comments { get; set; }

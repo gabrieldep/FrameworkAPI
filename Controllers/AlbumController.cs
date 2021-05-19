@@ -32,7 +32,7 @@ namespace FrameworkAPI.Controllers
                 Album album = new()
                 {
                     Title = albumDTO.title,
-                    UserId = albumDTO.userId
+                    IdUser = albumDTO.userId
                 };
                 _context.Albums.Add(album);
                 await _context.SaveChangesAsync();
@@ -61,7 +61,7 @@ namespace FrameworkAPI.Controllers
                 return new AlbumDTO
                 {
                     title = album.Title,
-                    userId = album.UserId,
+                    userId = album.IdUser,
                     photos = album.Photos.Select(p => new PhotoDTO
                     {
                         thumbnailUrl = p.ThumbnailUrl,
@@ -88,12 +88,12 @@ namespace FrameworkAPI.Controllers
             {
                 IEnumerable<Album> albums  = _context.Albums
                     .Include(a => a.Photos)
-                    .Where(c => c.UserId == idUser)
+                    .Where(c => c.IdUser == idUser)
                     .ToList();
                 return albums.Select(a => new AlbumDTO
                 {
                     title = a.Title,
-                    userId = a.UserId,
+                    userId = a.IdUser,
                     photos = a.Photos.Select(p => new PhotoDTO
                     {
                         thumbnailUrl = p.ThumbnailUrl,

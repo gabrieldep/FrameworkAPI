@@ -12,7 +12,7 @@ namespace FrameworkAPI.Model
         public string Url { get; set; }
         public string ThumbnailUrl { get; set; }
 
-        public int AlbumId { get; set; }
+        public int IdAlbum { get; set; }
         public Album Album { get; set; }
     }
 }

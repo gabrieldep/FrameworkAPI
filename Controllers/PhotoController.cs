@@ -32,7 +32,7 @@ namespace FrameworkAPI.Controllers
             {
                 Photo photo = new()
                 {
-                    AlbumId = photoDTO.albumId,
+                    IdAlbum = photoDTO.albumId,
                     ThumbnailUrl = photoDTO.thumbnailUrl,
                     Title = photoDTO.title,
                     Url = photoDTO.url
@@ -60,7 +60,7 @@ namespace FrameworkAPI.Controllers
                 IEnumerable<Photo> photos = photosDTO
                     .Select(p => new Photo
                     {
-                        AlbumId = p.albumId,
+                        IdAlbum = p.albumId,
                         ThumbnailUrl = p.thumbnailUrl,
                         Title = p.title,
                         Url = p.url
@@ -102,7 +102,7 @@ namespace FrameworkAPI.Controllers
                     .First(p => p.Id == id);
                 return new PhotoDTO
                 {
-                    albumId = photo.AlbumId,
+                    albumId = photo.IdAlbum,
                     thumbnailUrl = photo.ThumbnailUrl,
                     title = photo.Title,
                     url = photo.Url
@@ -125,11 +125,11 @@ namespace FrameworkAPI.Controllers
             try
             {
                 IEnumerable<Photo> photos = _context.Photos
-                    .Where(p => p.AlbumId == idAlbum)
+                    .Where(p => p.IdAlbum == idAlbum)
                     .ToList();
                 return photos.Select(p => new PhotoDTO
                 {
-                    albumId = p.AlbumId,
+                    albumId = p.IdAlbum,
                     thumbnailUrl = p.ThumbnailUrl,
                     title = p.Title,
                     url = p.Url

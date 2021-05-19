@@ -12,7 +12,7 @@ namespace FrameworkAPI.Model
         public string Email { get; set; }
         public string Body { get; set; }
 
-        public int PostId { get; set; }
+        public int IdPost { get; set; }
         public Post Post { get; set; }
     }
 }
