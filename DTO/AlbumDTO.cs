@@ -9,5 +9,7 @@ namespace FrameworkAPI.DTO
     {
         public string title { get; set; }
         public int userId { get; set; }
+
+        public ICollection<PhotoDTO> photos;
     }
 }
