@@ -118,5 +118,18 @@ namespace FrameworkAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("GetGuid")]
+        public ActionResult<string> GetGuid([FromBody] string userName)
+        {
+            try
+            {
+                return _context.Users.First(u => u.Username == userName).Guid;
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
