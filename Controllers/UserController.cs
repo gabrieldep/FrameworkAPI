@@ -30,33 +30,7 @@ namespace FrameworkAPI.Controllers
             try
             {
                 IEnumerable<User> users = usersDTO
-                    .Select(u => new User
-                    {
-                        Name = u.name,
-                        Username = u.username,
-                        Email = u.email,
-                        Phone = u.phone,
-                        Website = u.website,
-                        Guid = Guid.NewGuid().ToString(),
-                        Address = new Address
-                        {
-                            Street = u.address.street,
-                            City = u.address.city,
-                            Suite = u.address.suite,
-                            ZipCode = u.address.zipcode,
-                            Geo = new Geo
-                            {
-                                Lat = u.address.geo.lat,
-                                Lng = u.address.geo.lng
-                            }
-                        },
-                        Company = new Company
-                        {
-                            Name = u.company.name,
-                            CatchPhrase = u.company.catchPhrase,
-                            Bs = u.company.bs
-                        }
-                    });
+                    .Select(user => new User(user));
 
                 foreach (User user in users)
                 {
@@ -89,33 +63,8 @@ namespace FrameworkAPI.Controllers
         {
             try
             {
-                User user = new()
-                {
-                    Name = userDTO.name,
-                    Username = userDTO.username,
-                    Email = userDTO.email,
-                    Phone = userDTO.phone,
-                    Website = userDTO.website,
-                    Guid = Guid.NewGuid().ToString(),
-                    Address = new Address
-                    {
-                        Street = userDTO.address.street,
-                        City = userDTO.address.city,
-                        Suite = userDTO.address.suite,
-                        ZipCode = userDTO.address.zipcode,
-                        Geo = new Geo
-                        {
-                            Lat = userDTO.address.geo.lat,
-                            Lng = userDTO.address.geo.lng
-                        }
-                    },
-                    Company = new Company
-                    {
-                        Name = userDTO.company.name,
-                        CatchPhrase = userDTO.company.catchPhrase,
-                        Bs = userDTO.company.bs
-                    }
-                };
+                User user = new(userDTO);
+                
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
 

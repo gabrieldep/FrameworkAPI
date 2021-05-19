@@ -12,7 +12,7 @@ namespace FrameworkAPI.DTO
         public string email { get; set; }
         public string phone { get; set; }
         public string website { get; set; }
-
+        public string guid { get; set; }
         public AddressDTO address { get; set; }
 
         public CompanyDTO company { get; set; }
