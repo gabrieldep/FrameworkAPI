@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace FrameworkAPI.Model
 {
-    public class company
+    public class Company
     {
-        public company()
+        public Company()
         {
-            Users = new HashSet<user>();
+            Users = new HashSet<User>();
         }
 
-        public int id { get; set; }
-        public string name { get; set; }
-        public string catchPhrase { get; set; }
-        public string bs { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string CatchPhrase { get; set; }
+        public string Bs { get; set; }
 
-        public ICollection<user> Users { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

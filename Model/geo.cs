@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace FrameworkAPI.Model
 {
-    public class geo
+    public class Geo
     {
-        public int id { get; set; }
-        public string lat { get; set; }
-        public string lng { get; set; }
+        public int Id { get; set; }
+        public string Lat { get; set; }
+        public string Lng { get; set; }
 
-        public int idAddress { get; set; }
-        public address address { get; set; }
+        public int IdAddress { get; set; }
+        public Address Address { get; set; }
     }
 }

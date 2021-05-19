@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace FrameworkAPI.Model
 {
-    public class photo
+    public class Photo
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public string url { get; set; }
-        public string thumbnailUrl { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Url { get; set; }
+        public string ThumbnailUrl { get; set; }
 
-        public int albumId { get; set; }
-        public album album { get; set; }
+        public int AlbumId { get; set; }
+        public Album Album { get; set; }
     }
 }

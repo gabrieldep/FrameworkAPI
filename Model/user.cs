@@ -5,28 +5,28 @@ using System.Threading.Tasks;
 
 namespace FrameworkAPI.Model
 {
-    public class user
+    public class User
     {
-        public user()
+        public User()
         {
-            Posts = new HashSet<post>();
-            Albums = new HashSet<album>();
+            Posts = new HashSet<Post>();
+            Albums = new HashSet<Album>();
         }
 
-        public int id { get; set; }
-        public string name { get; set; }
-        public string username { get; set; }
-        public string email { get; set; }
-        public string phone { get; set; }
-        public string website { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Website { get; set; }
 
-        public int idAddress { get; set; }
-        public address address { get; set; }
+        public int IdAddress { get; set; }
+        public Address Address { get; set; }
 
-        public int idCompany { get; set; }
-        public company company { get; set; }
+        public int IdCompany { get; set; }
+        public Company Company { get; set; }
 
-        public ICollection<post> Posts { get; set; }
-        public ICollection<album> Albums { get; set; }
+        public ICollection<Post> Posts { get; set; }
+        public ICollection<Album> Albums { get; set; }
     }
 }

@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 
 namespace FrameworkAPI.Model
 {
-    public class post
+    public class Post
     {
-        public post()
+        public Post()
         {
-            Comments = new HashSet<comment>();
+            Comments = new HashSet<Comment>();
         }
         
-        public int id { get; set; }
-        public string title { get; set; }
-        public string body { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Body { get; set; }
 
-        public int userId { get; set; }
-        public user user { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
 
-        public ICollection<comment> Comments { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }

@@ -9,14 +9,14 @@ namespace FrameworkAPI.Model.Context
     public class FrameworkAPIDbContext : DbContext
     {
 
-        public DbSet<address> Addresses { get; set; }
-        public DbSet<album> Albums { get; set; }
-        public DbSet<company> Companies { get; set; }
-        public DbSet<comment> Comments { get; set; }
-        public DbSet<geo> Geos { get; set; }
-        public DbSet<photo> Photos { get; set; }
-        public DbSet<post> Posts { get; set; }
-        public DbSet<user> Users { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Geo> Geos { get; set; }
+        public DbSet<Photo> Photos { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public FrameworkAPIDbContext()
         {
@@ -29,56 +29,56 @@ namespace FrameworkAPI.Model.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<user>(u =>
+            modelBuilder.Entity<User>(u =>
             {
-                u.HasOne(u => u.address)
-                .WithOne(a => a.user)
-                .HasForeignKey<address>(a => a.idUser)
+                u.HasOne(u => u.Address)
+                .WithOne(a => a.User)
+                .HasForeignKey<Address>(a => a.IdUser)
                 .HasConstraintName("UserAddressFKConstraint");
 
-                u.HasOne(u => u.company)
+                u.HasOne(u => u.Company)
                 .WithMany(c => c.Users)
-                .HasForeignKey(u => u.idCompany)
+                .HasForeignKey(u => u.IdCompany)
                 .HasConstraintName("UserCompanyFKConstraint");
             });
 
-            modelBuilder.Entity<address>(a =>
+            modelBuilder.Entity<Address>(a =>
             {
-                a.HasOne(a => a.geo)
-                .WithOne(a => a.address)
-                .HasForeignKey<geo>(g => g.idAddress)
+                a.HasOne(a => a.Geo)
+                .WithOne(a => a.Address)
+                .HasForeignKey<Geo>(g => g.IdAddress)
                 .HasConstraintName("AddressGeoFKConstraint");
             });
 
-            modelBuilder.Entity<post>(p =>
+            modelBuilder.Entity<Post>(p =>
             {
-                p.HasOne(p => p.user)
+                p.HasOne(p => p.User)
                 .WithMany(u => u.Posts)
-                .HasForeignKey(p => p.userId)
+                .HasForeignKey(p => p.UserId)
                 .HasConstraintName("PostUserFKConstraint");
             });
 
-            modelBuilder.Entity<comment>(c =>
+            modelBuilder.Entity<Comment>(c =>
             {
-                c.HasOne(c => c.post)
+                c.HasOne(c => c.Post)
                 .WithMany(p => p.Comments)
-                .HasForeignKey(c => c.postId)
+                .HasForeignKey(c => c.PostId)
                 .HasConstraintName("CommentPostFKConstraint");
             });
 
-            modelBuilder.Entity<album>(a =>
+            modelBuilder.Entity<Album>(a =>
             {
-                a.HasOne(a => a.user)
+                a.HasOne(a => a.User)
                 .WithMany(u => u.Albums)
-                .HasForeignKey(a => a.userId)
+                .HasForeignKey(a => a.UserId)
                 .HasConstraintName("AlbumUserFKConstraint");
             });
 
-            modelBuilder.Entity<photo>(p =>
+            modelBuilder.Entity<Photo>(p =>
             {
-                p.HasOne(p => p.album)
+                p.HasOne(p => p.Album)
                 .WithMany(a => a.Photos)
-                .HasForeignKey(p => p.albumId)
+                .HasForeignKey(p => p.AlbumId)
                 .HasConstraintName("PhotoAlbumFKConstraint");
             });
         }
