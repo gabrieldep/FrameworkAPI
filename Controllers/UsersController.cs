@@ -25,33 +25,34 @@ namespace FrameworkAPI.Controllers
         {
             try
             {
-                IList<User> users = new List<User>();
-                users = usersDTO.Select(u => new User
-                {
-                    Name = u.name,
-                    Username = u.username,
-                    Email = u.email,
-                    Phone = u.phone,
-                    Website = u.website,
-                    Address = new Address
+                IEnumerable<User> users = usersDTO
+                    .Select(u => new User
                     {
-                        Street = u.address.street,
-                        City = u.address.city,
-                        Suite = u.address.suite,
-                        ZipCode = u.address.zipcode,
-                        Geo = new Geo
+                        Name = u.name,
+                        Username = u.username,
+                        Email = u.email,
+                        Phone = u.phone,
+                        Website = u.website,
+                        Guid = Guid.NewGuid().ToString(),
+                        Address = new Address
                         {
-                            Lat = u.address.geo.lat,
-                            Lng = u.address.geo.lng
+                            Street = u.address.street,
+                            City = u.address.city,
+                            Suite = u.address.suite,
+                            ZipCode = u.address.zipcode,
+                            Geo = new Geo
+                            {
+                                Lat = u.address.geo.lat,
+                                Lng = u.address.geo.lng
+                            }
+                        },
+                        Company = new Company
+                        {
+                            Name = u.company.name,
+                            CatchPhrase = u.company.catchPhrase,
+                            Bs = u.company.bs
                         }
-                    },
-                    Company = new Company
-                    {
-                        Name = u.company.name,
-                        CatchPhrase = u.company.catchPhrase,
-                        Bs = u.company.bs
-                    }
-                }).ToList();
+                    });
 
                 foreach (User user in users)
                 {
@@ -80,13 +81,14 @@ namespace FrameworkAPI.Controllers
         {
             try
             {
-                User user = new User
+                User user = new()
                 {
                     Name = userDTO.name,
                     Username = userDTO.username,
                     Email = userDTO.email,
                     Phone = userDTO.phone,
                     Website = userDTO.website,
+                    Guid = Guid.NewGuid().ToString(),
                     Address = new Address
                     {
                         Street = userDTO.address.street,

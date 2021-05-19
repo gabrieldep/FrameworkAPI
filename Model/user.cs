@@ -20,6 +20,8 @@ namespace FrameworkAPI.Model
         public string Phone { get; set; }
         public string Website { get; set; }
 
+        public string Guid { get; set; }
+
         public int IdAddress { get; set; }
         public Address Address { get; set; }
 
