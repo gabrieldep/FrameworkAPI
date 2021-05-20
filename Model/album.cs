@@ -7,6 +7,10 @@ namespace FrameworkAPI.Model
 {
     public class Album
     {
+        public Album()
+        {
+            Photos = new HashSet<Photo>();
+        }
         public int Id { get; set; }
         public string Title { get; set; }
 

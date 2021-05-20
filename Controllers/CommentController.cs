@@ -100,5 +100,30 @@ namespace FrameworkAPI.Controllers
                 return BadRequest();
             }
         }
+
+        /// <summary>
+        /// Solicita todos os comentarios
+        /// </summary>
+        /// <returns>Lista com todos os comentarios</returns>
+        [HttpGet("GetAllComments")]
+        public ActionResult<IEnumerable<CommentDTO>> GetAllComments()
+        {
+            try
+            {
+                IEnumerable<Comment> comments = _context.Comments
+                    .ToList();
+                return comments.Select(c => new CommentDTO
+                {
+                    body = c.Body,
+                    email = c.Email,
+                    name = c.Name,
+                    postId = c.IdPost
+                }).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

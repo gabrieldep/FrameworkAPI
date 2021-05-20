@@ -5,6 +5,7 @@ using FrameworkAPI.Model.Context;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -65,7 +66,7 @@ namespace FrameworkAPI.Controllers
             try
             {
                 User user = UserControl.GetUser(userDTO);
-                
+
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
 
@@ -88,6 +89,29 @@ namespace FrameworkAPI.Controllers
             try
             {
                 return _context.Users.First(u => u.Username == userName).Guid;
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        /// <summary>
+        /// Solicita todos os Users
+        /// </summary>
+        /// <returns>Lista com todos os users</returns>
+        [HttpGet("GetAllUsers")]
+        public ActionResult<IEnumerable<User>> GetAllUsers()
+        {
+            try
+            {
+                return _context.Users
+                    .Include(u => u.Address)
+                    .Include(u => u.Company)
+                    .Include(u => u.Posts)
+                    .Include(u => u.Albums)
+                    .ToList();
             }
             catch (ArgumentNullException)
             {

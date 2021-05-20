@@ -137,5 +137,31 @@ namespace FrameworkAPI.Controllers
                 return BadRequest();
             }
         }
+
+
+        /// <summary>
+        /// Solicita todos os posts
+        /// </summary>
+        /// <returns>Lista com todos os posts</returns>
+        [HttpGet("GetAllPosts")]
+        public ActionResult<IEnumerable<PostDTO>> GetAllPosts()
+        {
+            try
+            {
+                IEnumerable<Post> posts = _context.Posts
+                    .Include(p => p.User)
+                    .ToList();
+                return posts.Select(p => new PostDTO
+                {
+                    body = p.Body,
+                    title = p.Title,
+                    userId = p.IdUser
+                }).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

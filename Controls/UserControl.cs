@@ -19,7 +19,8 @@ namespace FrameworkAPI.Controls
                 Phone = userDTO.phone,
                 Website = userDTO.website,
                 Guid = string.IsNullOrEmpty(userDTO.guid) ? System.Guid.NewGuid().ToString() : userDTO.guid,
-                Address = AddressControl.GetAddress(userDTO.address)
+                Address = AddressControl.GetAddress(userDTO.address),
+                Company = CompanyControl.GetCompany(userDTO.company)
             };
         }
     }

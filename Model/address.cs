@@ -8,6 +8,11 @@ namespace FrameworkAPI.Model
 {
     public class Address
     {
+        public Address()
+        {
+            Users = new HashSet<User>();
+        }
+
         public int Id { get; set; }
         public string Street { get; set; }
         public string Suite { get; set; }
@@ -16,8 +21,7 @@ namespace FrameworkAPI.Model
 
         public int IdGeo { get; set; }
         public Geo Geo { get; set; }
-
-        public int IdUser { get; set; }
-        public User User { get; set; }
+        
+        public IEnumerable<User> Users { get; set; }
     }
 }

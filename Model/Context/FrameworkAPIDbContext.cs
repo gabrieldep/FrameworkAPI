@@ -32,8 +32,8 @@ namespace FrameworkAPI.Model.Context
             modelBuilder.Entity<User>(u =>
             {
                 u.HasOne(u => u.Address)
-                .WithOne(a => a.User)
-                .HasForeignKey<Address>(a => a.IdUser)
+                .WithMany(a => a.Users)
+                .HasForeignKey(u => u.IdAddress)
                 .HasConstraintName("UserAddressFKConstraint");
 
                 u.HasOne(u => u.Company)
@@ -43,13 +43,16 @@ namespace FrameworkAPI.Model.Context
 
                 u.HasIndex(u => u.Username)
                 .IsUnique();
+
+                u.HasIndex(u => u.Guid)
+                .IsUnique();
             });
 
             modelBuilder.Entity<Address>(a =>
             {
                 a.HasOne(a => a.Geo)
-                .WithOne(a => a.Address)
-                .HasForeignKey<Geo>(g => g.IdAddress)
+                .WithMany(g => g.Addresses)
+                .HasForeignKey(a => a.IdGeo)
                 .HasConstraintName("AddressGeoFKConstraint");
             });
 

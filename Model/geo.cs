@@ -8,11 +8,15 @@ namespace FrameworkAPI.Model
 {
     public class Geo
     {        
+        public Geo()
+        {
+            Addresses = new HashSet<Address>();
+        }
         public int Id { get; set; }
         public string Lat { get; set; }
         public string Lng { get; set; }
 
-        public int IdAddress { get; set; }
-        public Address Address { get; set; }
+       
+        public IEnumerable<Address> Addresses { get; set; }
     }
 }

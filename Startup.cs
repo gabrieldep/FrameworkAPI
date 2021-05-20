@@ -31,7 +31,11 @@ namespace FrameworkAPI
 
             services.AddDbContext<FrameworkAPIDbContext>(options =>
                 options.UseNpgsql(
-                        Configuration.GetConnectionString("DefaultConnection")));
+                        Configuration.GetConnectionString("ConexaoPostgree")));
+
+            //services.AddDbContext<FrameworkAPIDbContext>(options =>
+            //       options.UseSqlServer(
+            //           Configuration.GetConnectionString("ConexaoSQLServer")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

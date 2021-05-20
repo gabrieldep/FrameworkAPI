@@ -87,19 +87,34 @@ namespace FrameworkAPI.Controllers
             try
             {
                 IEnumerable<Album> albums  = _context.Albums
-                    .Include(a => a.Photos)
                     .Where(c => c.IdUser == idUser)
                     .ToList();
                 return albums.Select(a => new AlbumDTO
                 {
                     title = a.Title,
-                    userId = a.IdUser,
-                    photos = a.Photos.Select(p => new PhotoDTO
-                    {
-                        thumbnailUrl = p.ThumbnailUrl,
-                        title = p.Title,
-                        url = p.Url
-                    }).ToList()
+                    userId = a.IdUser
+                }).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Solicita todos os albuns
+        /// </summary>
+        /// <returns>Lista com todos os albuns</returns>
+        [HttpGet("GetAllAlbums")]
+        public ActionResult<IEnumerable<AlbumDTO>> GetAllAlbums()
+        {
+            try
+            {
+                IList<Album> albums = _context.Albums.ToList();
+                return albums.Select(a => new AlbumDTO
+                {
+                    title = a.Title,
+                    userId = a.IdUser
                 }).ToList();
             }
             catch (ArgumentNullException)

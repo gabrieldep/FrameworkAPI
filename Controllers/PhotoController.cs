@@ -140,5 +140,30 @@ namespace FrameworkAPI.Controllers
                 return BadRequest();
             }
         }
+
+        /// <summary>
+        /// Solicita todas as fotos
+        /// </summary>
+        /// <returns>Lista com todas as fotos</returns>
+        [HttpGet("GetAllPhotos")]
+        public ActionResult<IEnumerable<PhotoDTO>> GetAllPhotos()
+        {
+            try
+            {
+                IEnumerable<Photo> photos = _context.Photos
+                    .ToList();
+                return photos.Select(p => new PhotoDTO
+                {
+                    albumId = p.IdAlbum,
+                    thumbnailUrl = p.ThumbnailUrl,
+                    title = p.Title,
+                    url = p.Url
+                }).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
