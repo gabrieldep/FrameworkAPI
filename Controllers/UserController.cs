@@ -118,5 +118,36 @@ namespace FrameworkAPI.Controllers
                 return BadRequest();
             }
         }
+
+        /// <summary>
+        /// Adiciona um User
+        /// </summary>
+        /// <param name="userDTO">User para adicionar</param>
+        [HttpPost("PostUserTeste")]
+        public async Task<IActionResult> PostUserTesteAsync()
+        {
+            try
+            {
+                User user = new User
+                {
+                    Address = new Address
+                    {
+                        Street = "Rua Sucuri",
+                        Suite = "768"
+                    },
+                    Name = "Vinicius Carvalho",
+                    Email = "gabrieldepaula007@gmail.com"
+                };
+
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
